@@ -41,7 +41,7 @@ class Application {
 					'progress' => $percent,
 					'queued' => $issues['queued'],
 					'active' => $issues['active'],
-					'completed' => $issues['completed']
+					'completed' => isset($issues['completed'])? $issues['completed'] : []
 				);
 			}
 		}
@@ -68,9 +68,11 @@ class Application {
 				'closed'			=> $ii['closed_at']
 			);
 		}
-		usort($issues['active'], function ($a, $b) {
-			return count($a['paused']) - count($b['paused']) === 0 ? strcmp($a['title'], $b['title']) : count($a['paused']) - count($b['paused']);
-		});
+		if (sizeof($issues) > 1) {
+      usort($issues['active'], function ($a, $b) {
+        return count($a['paused']) - count($b['paused']) === 0 ? strcmp($a['title'], $b['title']) : count($a['paused']) - count($b['paused']);
+      });
+    }
 		return $issues;
 	}
 
