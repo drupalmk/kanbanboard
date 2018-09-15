@@ -1,8 +1,8 @@
 {
+	"name": "centra/kanban-board",
+	"description": "Simple, read only Kanban Board",
 	"autoload": {
-		"classmap": [
-			"src/classes"
-		]
+		"classmap": ["src/classes"]
 	},
 	"require": {
 		"mustache/mustache": "^2.9",
@@ -10,7 +10,10 @@
 		"knplabs/github-api": "^1.5",
 		"michelf/php-markdown": "^1.6",
 		"phpunit/phpunit": "5.0.*",
-		"php-http/guzzle6-adapter": "^1.2@dev"
+		"php-http/guzzle6-adapter": "^1.2@dev",
+		"endouble/symfony3-custom-coding-standard": "^2.0@dev"
 	},
-	"minimum-stability": "dev"
+	"minimum-stability": "dev",
+	"require-dev": {
+	}
 }
