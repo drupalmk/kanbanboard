@@ -2,27 +2,14 @@
 
 namespace KanbanBoard;
 
+use Dotenv\Dotenv;
+
 class Utils
 {
-
-    const SETTINGS = [
-      'GH_REPOSITORIES' => 'sample-repository',
-      'GH_ACCOUNT' => 'drupalmk',
-      'GH_CLIENT_ID' => 'd6b970b8a9c42c1b32b9',
-      'GH_CLIENT_SECRET' => '61be6c4ba46ac7a02e7f42ccc1a70aa82794633f',
-    ];
-
-    private function __construct()
-    {
-    }
-
     public static function env($name, $default = null)
     {
-
-        if (array_key_exists($name, self::SETTINGS)) {
-            return self::SETTINGS[$name];
-        }
-
+        $dotenv = new Dotenv(__DIR__ . '/../../../');
+        $dotenv->load();
         $value = getenv($name);
         if ($default !== null) {
             if (!empty($value)) {

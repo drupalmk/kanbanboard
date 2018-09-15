@@ -11,7 +11,8 @@
 		"michelf/php-markdown": "^1.6",
 		"phpunit/phpunit": "5.0.*",
 		"php-http/guzzle6-adapter": "^1.2@dev",
-		"endouble/symfony3-custom-coding-standard": "^2.0@dev"
+		"endouble/symfony3-custom-coding-standard": "^2.0@dev",
+		"vlucas/phpdotenv": "^2.5@dev"
 	},
 	"minimum-stability": "dev",
 	"require-dev": {
