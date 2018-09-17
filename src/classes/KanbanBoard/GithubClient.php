@@ -18,7 +18,6 @@ class GithubClient
 
     public function __construct($token, $account)
     {
-        require '../../vendor/autoload.php';
         $this->account = $account;
         $this->client = new Client();
 
