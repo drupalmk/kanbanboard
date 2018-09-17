@@ -7,7 +7,6 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use KanbanBoard\Authentication;
 use KanbanBoard\GithubClient;
 use KanbanBoard\Application;
-use KanbanBoard\Utils;
 
 require '../../vendor/autoload.php';
 
