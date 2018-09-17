@@ -7,12 +7,17 @@
 	"require": {
 		"mustache/mustache": "^2.9",
 		"vierbergenlars/php-semver": "^3.0",
-		"knplabs/github-api": "^1.5",
 		"michelf/php-markdown": "^1.6",
 		"phpunit/phpunit": "5.0.*",
-		"php-http/guzzle6-adapter": "^1.2@dev",
 		"endouble/symfony3-custom-coding-standard": "^2.0@dev",
-		"vlucas/phpdotenv": "^2.5@dev"
+		"vlucas/phpdotenv": "^2.5@dev",
+		"symfony/dependency-injection": "^4.2@dev",
+		"symfony/yaml": "3.4.x-dev",
+		"symfony/config": "^4.2@dev",
+		"guzzlehttp/guzzle": "^6.3@dev",
+		"symfony/event-dispatcher": "^4.1@dev",
+		"knplabs/github-api": "^2.11@dev",
+		"php-http/guzzle6-adapter": "^1.2@dev"
 	},
 	"minimum-stability": "dev",
 	"require-dev": {
