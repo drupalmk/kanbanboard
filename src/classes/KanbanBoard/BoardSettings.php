@@ -34,8 +34,15 @@ class BoardSettings
         return getenv('GH_ACCOUNT');
     }
 
-    public function getRepositoryList() : array {
+    public function getRepositoryList(): array
+    {
         $names = getenv('GH_REPOSITORIES');
+
         return explode('|', $names);
+    }
+
+    public function getPausedTags()
+    {
+        return ['waiting-for-feedback'];
     }
 }
