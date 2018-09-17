@@ -2,7 +2,10 @@
 
 namespace KanbanBoard;
 
+use Cache\Adapter\Filesystem\FilesystemCachePool;
 use Github\Client;
+use League\Flysystem\Adapter\Local;
+use League\Flysystem\Filesystem;
 
 class GithubClient
 {
@@ -18,6 +21,13 @@ class GithubClient
         require '../../vendor/autoload.php';
         $this->account = $account;
         $this->client = new Client();
+
+        $filesystemAdapter = new Local(__DIR__ . '/../../../.cache');
+        $filesystem        = new Filesystem($filesystemAdapter);
+
+        $pool = new FilesystemCachePool($filesystem);
+        $this->client->addCache($pool);
+
         $this->client->authenticate($token, Client::AUTH_HTTP_TOKEN);
         $this->milestone_api = $this->client->api('issues')->milestones();
     }
