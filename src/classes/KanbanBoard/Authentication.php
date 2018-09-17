@@ -5,14 +5,14 @@ namespace KanbanBoard;
 class Authentication
 {
 
-    private $client_id = null;
+    private $client_id;
 
-    private $client_secret = null;
+    private $client_secret;
 
-    public function __construct()
+    public function __construct($client_id, $client_secret)
     {
-        $this->client_id = Utils::env('GH_CLIENT_ID');
-        $this->client_secret = Utils::env('GH_CLIENT_SECRET');
+        $this->client_id = $client_id;
+        $this->client_secret = $client_secret;
     }
 
     public function logout()
