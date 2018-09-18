@@ -9,7 +9,7 @@
 namespace KanbanBoard\KanbanBoard\Entity;
 
 
-interface IIssue
+interface IssueInterface
 {
 
 }

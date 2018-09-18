@@ -3,17 +3,16 @@
  * Created by PhpStorm.
  * User: marek.kisiel
  * Date: 18/09/2018
- * Time: 12:44
+ * Time: 12:40
  */
 
 namespace KanbanBoard\KanbanBoard\Entity;
 
 
-interface IMilestone
+interface EntityInterface
 {
-
-    public function addIssue(IIssue $issue);
-
-    public function getIssue(): array;
-
+    /**
+     * @return string
+     */
+    public function getText();
 }

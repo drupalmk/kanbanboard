@@ -8,10 +8,10 @@
 
 namespace KanbanBoard\KanbanBoard\Entity\Github;
 
-use KanbanBoard\KanbanBoard\Entity\IEntity;
-use KanbanBoard\KanbanBoard\Entity\IIssue;
+use KanbanBoard\KanbanBoard\Entity\EntityInterface;
+use KanbanBoard\KanbanBoard\Entity\IssueInterface;
 
-class GithubIssue implements IEntity, IIssue
+class GithubIssueInterface implements EntityInterface, IssueInterface
 {
 
     /**

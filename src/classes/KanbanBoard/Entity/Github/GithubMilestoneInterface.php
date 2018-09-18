@@ -8,11 +8,11 @@
 
 namespace KanbanBoard\KanbanBoard\Entity\Github;
 
-use KanbanBoard\KanbanBoard\Entity\IEntity;
-use KanbanBoard\KanbanBoard\Entity\IIssue;
-use KanbanBoard\KanbanBoard\Entity\IMilestone;
+use KanbanBoard\KanbanBoard\Entity\EntityInterface;
+use KanbanBoard\KanbanBoard\Entity\IssueInterface;
+use KanbanBoard\KanbanBoard\Entity\MilestoneInterface;
 
-class GithubMilestone implements IEntity, IMilestone
+class GithubMilestoneInterface implements EntityInterface, MilestoneInterface
 {
 
     /**
@@ -28,7 +28,7 @@ class GithubMilestone implements IEntity, IMilestone
         return $this->getText();
     }
 
-    public function addIssue(IIssue $issue)
+    public function addIssue(IssueInterface $issue)
     {
         // TODO: Implement addIssue() method.
     }
