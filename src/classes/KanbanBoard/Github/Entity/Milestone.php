@@ -3,16 +3,27 @@
  * Created by PhpStorm.
  * User: marek.kisiel
  * Date: 18/09/2018
- * Time: 12:42
+ * Time: 12:41
  */
 
 namespace KanbanBoard\KanbanBoard\Github\Entity;
 
 use KanbanBoard\KanbanBoard\Entity\EntityInterface;
 use KanbanBoard\KanbanBoard\Entity\IssueInterface;
+use KanbanBoard\KanbanBoard\Entity\MilestoneInterface;
 
-class GithubIssue implements EntityInterface, IssueInterface
+class Milestone implements EntityInterface, MilestoneInterface
 {
+
+    public function addIssue(IssueInterface $issue)
+    {
+        // TODO: Implement addIssue() method.
+    }
+
+    public function getIssue(): array
+    {
+        // TODO: Implement getIssue() method.
+    }
 
     /**
      * @return string
@@ -22,11 +33,9 @@ class GithubIssue implements EntityInterface, IssueInterface
         // TODO: Implement getText() method.
     }
 
-    /**
-     * @return string
-     */
     public function __toString()
     {
         return $this->getText();
     }
+
 }

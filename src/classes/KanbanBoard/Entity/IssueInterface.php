@@ -6,7 +6,7 @@
  * Time: 12:46
  */
 
-namespace KanbanBoard\KanbanBoard\Entity;
+namespace KanbanBoard\Entity;
 
 interface IssueInterface
 {

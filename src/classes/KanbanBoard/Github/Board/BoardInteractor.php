@@ -6,12 +6,11 @@
  * Time: 13:50
  */
 
-namespace KanbanBoard\KanbanBoard\Github\Board;
+namespace KanbanBoard\Github\Board;
 
+use KanbanBoard\Board\BoardInteractorInterface;
 
-use KanbanBoard\KanbanBoard\Board\BoardInteractorInterface;
-
-class GithubBoardInteractor implements BoardInteractorInterface
+class BoardInteractor implements BoardInteractorInterface
 {
 
     /**
