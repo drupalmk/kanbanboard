@@ -8,7 +8,6 @@
 
 namespace KanbanBoard\KanbanBoard\Entity;
 
-
 interface IssueInterface
 {
 
