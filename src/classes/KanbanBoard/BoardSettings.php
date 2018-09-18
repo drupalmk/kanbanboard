@@ -10,6 +10,13 @@ namespace KanbanBoard;
 
 use Dotenv\Dotenv;
 
+/**
+ * Class BoardSettings
+ *
+ * @TODO seems this also should implement generic interface.
+ *
+ * @package KanbanBoard
+ */
 class BoardSettings
 {
 
