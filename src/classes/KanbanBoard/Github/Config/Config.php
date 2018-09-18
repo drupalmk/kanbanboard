@@ -18,9 +18,10 @@ class Config implements OAuthInterface, VersionControlInterface
     /**
      * Config constructor.
      */
-    public function __construct()
+    public function __construct($configFileDirectory)
     {
-
+        $dotenv = new Dotenv($configFileDirectory);
+        $dotenv->load();
     }
 
     /**
@@ -28,7 +29,7 @@ class Config implements OAuthInterface, VersionControlInterface
      */
     public function getClientId(): string
     {
-        // TODO: Implement getClientId() method.
+        return getenv('GH_CLIENT_ID');
     }
 
     /**
@@ -36,7 +37,7 @@ class Config implements OAuthInterface, VersionControlInterface
      */
     public function getClientSecret(): string
     {
-        // TODO: Implement getClientSecret() method.
+        return getenv('GH_CLIENT_SECRET');
     }
 
     /**
@@ -44,7 +45,7 @@ class Config implements OAuthInterface, VersionControlInterface
      */
     public function getAccountName(): string
     {
-        // TODO: Implement getAccountName() method.
+        return getenv('GH_ACCOUNT');
     }
 
     /**
@@ -52,7 +53,9 @@ class Config implements OAuthInterface, VersionControlInterface
      */
     public function getRepositoryList(): array
     {
-        // TODO: Implement getRepositoryList() method.
+        $names = getenv('GH_REPOSITORIES');
+
+        return explode('|', $names);
     }
 
     /**
@@ -60,6 +63,6 @@ class Config implements OAuthInterface, VersionControlInterface
      */
     public function getPausedTags(): array
     {
-        // TODO: Implement getPausedTags() method.
+        return ['waiting-for-feedback'];
     }
 }
