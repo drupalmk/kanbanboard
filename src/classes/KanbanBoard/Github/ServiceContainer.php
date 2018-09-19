@@ -9,6 +9,7 @@
 namespace KanbanBoard\Github;
 
 use KanbanBoard\Github\Config\Config;
+use KanbanBoard\GithubClient;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
@@ -27,8 +28,8 @@ class ServiceContainer extends Container
     {
         parent::__construct(new ParameterBag($this->getDefaultParameters()));
         $this->methodMap = array(
-          '_defaults' => 'getDefaultsService',
           'github_settings' => 'getGithubSettingsService',
+          'github_client' => 'getGithubClient',
         );
     }
 
@@ -43,6 +44,13 @@ class ServiceContainer extends Container
     protected function getGithubSettingsService()
     {
         return $this->services['github_settings'] = new Config($this->getParameter('config.directory'));
+    }
+
+    /**
+     * @return \KanbanBoard\GithubClient
+     */
+    protected function getGithubClient() {
+        return $this->services['github_client'] = new GithubClient($this->getGithubSettingsService());
     }
 
     /**

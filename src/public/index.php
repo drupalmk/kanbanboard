@@ -10,13 +10,9 @@ require '../../vendor/autoload.php';
 $container = new ServiceContainer();
 $container->compile();
 
-/** @var \KanbanBoard\Github\Config\Config */
 $settings = $container->get('github_settings');
-
-
-//$authentication = new Authentication($settings->getClientId(), $settings->getClientSecret());
-//$token = $authentication->login();
-$github = new GithubClient($settings);
+/** @var \KanbanBoard\GithubClient $github */
+$github = $container->get('github_client');
 $board = new Application($github, $settings->getRepositoryList(), $settings->getPausedTags());
 $data = $board->board();
 $m = new Mustache_Engine(
