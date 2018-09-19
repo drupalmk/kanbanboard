@@ -87,7 +87,7 @@ class Application
         if ($issue['state'] === 'closed') {
             return 'completed';
         } else {
-            if (Utils::hasValue($issue, 'assignee') && count(
+            if (self::hasValue($issue, 'assignee') && count(
                 $issue['assignee']
               ) > 0) {
                 return 'active';
@@ -99,7 +99,7 @@ class Application
 
     private static function labels_match($issue, $needles)
     {
-        if (Utils::hasValue($issue, 'labels')) {
+        if (self::hasValue($issue, 'labels')) {
             foreach ($issue['labels'] as $label) {
                 if (in_array($label['name'], $needles)) {
                     return [$label['name']];
@@ -129,4 +129,14 @@ class Application
 
         return [];
     }
+
+    private static function hasValue($array, $key)
+    {
+        return is_array($array) && array_key_exists(
+            $key,
+            $array
+          ) && !empty($array[$key]);
+    }
+
+
 }
