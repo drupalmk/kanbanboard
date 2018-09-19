@@ -1,7 +1,6 @@
 <?php
 
 use KanbanBoard\Github\ServiceContainer;
-use KanbanBoard\Authentication;
 use KanbanBoard\GithubClient;
 use KanbanBoard\Application;
 
@@ -15,9 +14,9 @@ $container->compile();
 $settings = $container->get('github_settings');
 
 
-$authentication = new Authentication($settings->getClientId(), $settings->getClientSecret());
-$token = $authentication->login();
-$github = new GithubClient($token, $settings->getAccountName());
+//$authentication = new Authentication($settings->getClientId(), $settings->getClientSecret());
+//$token = $authentication->login();
+$github = new GithubClient($settings);
 $board = new Application($github, $settings->getRepositoryList(), $settings->getPausedTags());
 $data = $board->board();
 $m = new Mustache_Engine(

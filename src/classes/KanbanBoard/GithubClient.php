@@ -16,18 +16,29 @@ class GithubClient
 
     private $account;
 
-    public function __construct($token, $account)
+    public function __construct(Config\ConfigInterface $config)
     {
-        $this->account = $account;
+        $this->account = $config->getAccountName();
         $this->client = new Client();
 
+        try {
+            $this->client->authenticate(
+                $config->getClientId(),
+                $config->getClientSecret(),
+                Client::AUTH_URL_CLIENT_ID
+            );
+        } catch (\Exception $ex) {
+            //@TODO just dummy exception handling here.
+            print "Github authentication failed\n";
+            print $ex->getMessage();
+            die();
+        }
+
         $filesystemAdapter = new Local(__DIR__ . '/../../../.cache');
-        $filesystem        = new Filesystem($filesystemAdapter);
+        $filesystem = new Filesystem($filesystemAdapter);
 
         $pool = new FilesystemCachePool($filesystem);
         $this->client->addCache($pool);
-
-        $this->client->authenticate($token, Client::AUTH_HTTP_TOKEN);
         $this->milestone_api = $this->client->api('issues')->milestones();
     }
 
