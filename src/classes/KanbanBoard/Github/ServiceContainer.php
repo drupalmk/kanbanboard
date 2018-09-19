@@ -6,7 +6,7 @@
  * Time: 13:01
  */
 
-namespace KanbanBoard;
+namespace KanbanBoard\Github;
 
 use KanbanBoard\Github\Config\Config;
 use Symfony\Component\DependencyInjection\Container;
@@ -53,7 +53,7 @@ class ServiceContainer extends Container
     protected function getDefaultParameters()
     {
         return array(
-          'config.directory' => __DIR__ . '/../../../',
+          'config.directory' => __DIR__ . '/../../../../',
         );
     }
 }

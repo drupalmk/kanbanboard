@@ -12,6 +12,12 @@ use Dotenv\Dotenv;
 use KanbanBoard\Config\OAuthInterface;
 use KanbanBoard\Config\VersionControlInterface;
 
+/**
+ * Class Config
+ * @TODO Really there is a need of two separate interfaces?
+ *
+ * @package KanbanBoard\Github\Config
+ */
 class Config implements OAuthInterface, VersionControlInterface
 {
 
