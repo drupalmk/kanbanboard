@@ -9,8 +9,7 @@
 namespace KanbanBoard\Github\Config;
 
 use Dotenv\Dotenv;
-use KanbanBoard\Config\OAuthInterface;
-use KanbanBoard\Config\VersionControlInterface;
+use KanbanBoard\Config\ConfigInterface;
 
 /**
  * Class Config
@@ -18,7 +17,7 @@ use KanbanBoard\Config\VersionControlInterface;
  *
  * @package KanbanBoard\Github\Config
  */
-class Config implements OAuthInterface, VersionControlInterface
+class Config implements ConfigInterface
 {
 
     /**
