@@ -63,10 +63,6 @@ class Application
                   $ii
                 ) && !empty($ii['assignee'])) ? $ii['assignee']['avatar_url'].'?s=16' : null,
               'paused' => self::labels_match($ii, $this->paused_labels),
-              'progress' => self::_percent(
-                substr_count(strtolower($ii['body']), '[x]'),
-                substr_count(strtolower($ii['body']), '[ ]')
-              ),
               'closed' => $ii['closed_at'],
             ];
         }

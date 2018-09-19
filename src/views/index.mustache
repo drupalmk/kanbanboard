@@ -39,7 +39,7 @@
             <div class="panel-heading">
                 <p class="panel-title">
                     <a href="{{url}}">
-                        {{milestone}}
+                        {{ milestone }}
                         <span style="float: right" class="glyphicon glyphicon-new-window"/>
                     </a>
                 </p>
@@ -50,7 +50,7 @@
                         <div class="list-group">
 
                             {{#queued}}
-                                <a href="{{url}}" class="list-group-item list-group-item-danger">
+                                <a href="{{url}}" class="list-group-item list-group-item-danger queued-issue">
                                     <span class="glyphicon glyphicon-question-sign"></span>
                                     {{title}}
                                     <span style="float: right" class="glyphicon glyphicon-new-window"/></a>
@@ -60,7 +60,7 @@
                     <div class="col-sm-4">
                         <div class="list-group">
                             {{#active}}
-                                <a href="{{url}}" class="list-group-item {{#paused}}list-group-item-warning{{/paused}} {{^paused}}list-group-item-info{{/paused}}">
+                                <a href="{{url}}" class="list-group-item {{#paused}}list-group-item-warning{{/paused}} {{^paused}}list-group-item-info{{/paused}} active-issue">
                                     <img class="img-rounded" src="{{assignee}}" width="16" height="16" border="0"/>&nbsp;
                                     {{#paused}}<em><small>{{/paused}}{{title}}{{#paused}}</small></em>{{/paused}}
                                     <span id="state" class="glyphicon"></span>
@@ -72,7 +72,7 @@
                     <div class="col-sm-4">
                         <div class="list-group">
                             {{#completed}}
-                                <a href="{{url}}" class="list-group-item list-group-item-success">
+                                <a href="{{url}}" class="list-group-item list-group-item-success success-issue">
                                     <img class="img-rounded" src="{{assignee}}" width="16" height="16" border="0"/>&nbsp;
                                     <s>{{title}}</s>
                                     <span style="float: right" class="glyphicon glyphicon-new-window"/>
