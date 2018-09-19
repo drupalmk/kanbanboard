@@ -1,6 +1,6 @@
 <?php
 
-use KanbanBoard\ServiceContainer;
+use KanbanBoard\Github\ServiceContainer;
 use KanbanBoard\Authentication;
 use KanbanBoard\GithubClient;
 use KanbanBoard\Application;
