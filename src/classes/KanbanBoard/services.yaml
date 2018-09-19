@@ -1,5 +1,0 @@
-services:
-   _defaults:
-      public: true
-   board_settings:
-     class: KanbanBoard\BoardSettings

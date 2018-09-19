@@ -1,9 +1,6 @@
 <?php
 
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-
+use KanbanBoard\ServiceContainer;
 use KanbanBoard\Authentication;
 use KanbanBoard\GithubClient;
 use KanbanBoard\Application;
@@ -11,13 +8,11 @@ use KanbanBoard\Application;
 require '../../vendor/autoload.php';
 
 
+$container = new ServiceContainer();
+$container->compile();
 
-$containerBuilder = new ContainerBuilder();
-$loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__ . '/../classes/KanbanBoard'));
-$loader->load('services.yaml');
-$containerBuilder->compile();
-/** @var \KanbanBoard\BoardSettings $settings */
-$settings = $containerBuilder->get('board_settings');
+/** @var \KanbanBoard\Github\Config\Config */
+$settings = $container->get('github_settings');
 
 
 $authentication = new Authentication($settings->getClientId(), $settings->getClientSecret());
