@@ -33,19 +33,6 @@ class ServiceContainer extends Container
     }
 
     /**
-     * Gets the '_defaults' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     *
-     */
-    protected function getDefaultsService()
-    {
-        return $this->services['_defaults'] = new \UL();
-    }
-
-    /**
      * Gets the 'github_settings' service.
      *
      * This service is shared.
@@ -66,7 +53,7 @@ class ServiceContainer extends Container
     protected function getDefaultParameters()
     {
         return array(
-          'config.directory' => __DIR__  . '/../../../',
+          'config.directory' => __DIR__ . '/../../../',
         );
     }
 }
