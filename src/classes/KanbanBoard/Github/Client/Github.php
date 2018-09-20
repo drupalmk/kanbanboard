@@ -60,7 +60,7 @@ class Github implements ClientInterface
         );
 
         //@TODO Consider directory path configurable also.
-        $filesystemAdapter = new Local(__DIR__ . '../../../../../.cache');
+        $filesystemAdapter = new Local($config->getCacheLocation());
         $filesystem = new Filesystem($filesystemAdapter);
         // Adding cache layer can be also done in wrapper class (decorator).
         $pool = new FilesystemCachePool($filesystem);

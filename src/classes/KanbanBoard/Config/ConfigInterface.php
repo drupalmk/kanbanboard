@@ -11,4 +11,9 @@ namespace KanbanBoard\Config;
 interface ConfigInterface extends OAuthInterface, VersionControlInterface
 {
 
+    /**
+     * Get absolute cache directory location.
+     * @return string
+     */
+    public function getCacheLocation() : string;
 }

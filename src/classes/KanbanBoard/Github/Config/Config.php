@@ -70,4 +70,14 @@ class Config implements ConfigInterface
     {
         return ['waiting-for-feedback'];
     }
+
+    /**
+     * Get absolute cache directory location.
+     *
+     * @return string
+     */
+    public function getCacheLocation(): string
+    {
+        return getenv('GH_CACHE_LOCATION');
+    }
 }
