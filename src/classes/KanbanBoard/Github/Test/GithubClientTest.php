@@ -18,6 +18,8 @@ class GithubClientTest extends \PHPUnit_Framework_TestCase
 
     const GH_TEST_REPOSITORY_KEY = 'GH_TEST_REPOSITORY_NAME';
 
+    private $testRepositoryName;
+
     public function setUp()
     {
         $dotenv = new Dotenv(__DIR__, '/.env_test');
@@ -34,10 +36,23 @@ class GithubClientTest extends \PHPUnit_Framework_TestCase
     {
         $client = new Github($this->getConfigMock());
         $milestones = $client->getMilestones();
-        $repository = getenv(self::GH_TEST_REPOSITORY_KEY);
+        $this->testRepositoryName = getenv(self::GH_TEST_REPOSITORY_KEY);
         $this->assertArrayHasKey($repository, $milestones);
         $this->assertNotEmpty($milestones[$repository]);
         $this->assertNotEmpty($milestones[$repository][0]['title']);
+    }
+
+    /**
+     * @expectedException Github\Exception\RuntimeException
+     */
+    public function testFetchMilestonesForNonExistingRepo()
+    {
+        $this->testRepositoryName = 'non-existing-repo';
+        /** @var \PHPUnit_Framework_MockObject_MockObject $configMock */
+        $configMock = $this->getConfigMock();
+        $client = new Github($configMock);
+
+        $milestones = $client->getMilestones();
     }
 
     /**
@@ -52,7 +67,11 @@ class GithubClientTest extends \PHPUnit_Framework_TestCase
             ->willReturn(getenv(Config::GH_CACHE_LOCATION));
 
         $configMock->method('getRepositoryList')
-            ->willReturn([getenv(self::GH_TEST_REPOSITORY_KEY)]);
+            ->will(
+              $this->returnCallback(function() {
+                  return [$this->testRepositoryName];
+              })
+            );
 
         $configMock->method('getAccountName')
           ->willReturn(getenv(Config::GH_ACCOUNT_NAME));
