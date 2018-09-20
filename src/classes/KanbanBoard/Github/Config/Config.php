@@ -13,16 +13,24 @@ use KanbanBoard\Config\ConfigInterface;
 
 /**
  * Class Config
- * @TODO Really there is a need of two separate interfaces?
  *
  * @package KanbanBoard\Github\Config
  */
 class Config implements ConfigInterface
 {
 
-    /**
-     * Config constructor.
-     */
+    const GH_CLIENT_ID = 'GH_CLIENT_ID';
+
+    const GH_CLIENT_SECRET = 'GH_CLIENT_SECRET';
+
+    const GH_ACCOUNT_NAME = 'GH_ACCOUNT';
+
+    const GH_REPOSITORIES = 'GH_REPOSITORIES';
+
+    const GH_CACHE_LOCATION = 'GH_CACHE_LOCATION';
+
+    const GH_REPOSITORY_NAMES_SEPARATOR = '|';
+
     public function __construct($configFileDirectory)
     {
         $dotenv = new Dotenv($configFileDirectory);
@@ -34,7 +42,7 @@ class Config implements ConfigInterface
      */
     public function getClientId(): string
     {
-        return getenv('GH_CLIENT_ID');
+        return getenv(self::GH_CLIENT_ID);
     }
 
     /**
@@ -42,7 +50,7 @@ class Config implements ConfigInterface
      */
     public function getClientSecret(): string
     {
-        return getenv('GH_CLIENT_SECRET');
+        return getenv(self::GH_CLIENT_SECRET);
     }
 
     /**
@@ -50,7 +58,7 @@ class Config implements ConfigInterface
      */
     public function getAccountName(): string
     {
-        return getenv('GH_ACCOUNT');
+        return getenv(self::GH_ACCOUNT_NAME);
     }
 
     /**
@@ -58,9 +66,9 @@ class Config implements ConfigInterface
      */
     public function getRepositoryList(): array
     {
-        $names = getenv('GH_REPOSITORIES');
+        $names = getenv(self::GH_REPOSITORIES);
 
-        return explode('|', $names);
+        return explode(self::GH_REPOSITORY_NAMES_SEPARATOR, $names);
     }
 
     /**
@@ -78,6 +86,6 @@ class Config implements ConfigInterface
      */
     public function getCacheLocation(): string
     {
-        return getenv('GH_CACHE_LOCATION');
+        return getenv(self::GH_CACHE_LOCATION);
     }
 }
