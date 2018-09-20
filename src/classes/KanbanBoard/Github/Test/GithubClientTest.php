@@ -12,8 +12,9 @@ use Dotenv\Dotenv;
 use KanbanBoard\Config\ConfigInterface;
 use KanbanBoard\Github\Client\Github;
 use KanbanBoard\Github\Config\Config;
+use PHPUnit\Framework\TestCase;
 
-class GithubClientTest extends \PHPUnit_Framework_TestCase
+class GithubClientTest extends TestCase
 {
 
     const GH_TEST_REPOSITORY_KEY = 'GH_TEST_REPOSITORY_NAME';
@@ -34,16 +35,16 @@ class GithubClientTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchMilestones()
     {
+        $this->testRepositoryName = getenv(self::GH_TEST_REPOSITORY_KEY);
         $client = new Github($this->getConfigMock());
         $milestones = $client->getMilestones();
-        $this->testRepositoryName = getenv(self::GH_TEST_REPOSITORY_KEY);
-        $this->assertArrayHasKey($repository, $milestones);
-        $this->assertNotEmpty($milestones[$repository]);
-        $this->assertNotEmpty($milestones[$repository][0]['title']);
+        $this->assertArrayHasKey($this->testRepositoryName, $milestones);
+        $this->assertNotEmpty($milestones[$this->testRepositoryName]);
+        $this->assertNotEmpty($milestones[$this->testRepositoryName][0]['title']);
     }
 
     /**
-     * @expectedException Github\Exception\RuntimeException
+     * @expectedException \Github\Exception\RuntimeException
      */
     public function testFetchMilestonesForNonExistingRepo()
     {
@@ -51,8 +52,7 @@ class GithubClientTest extends \PHPUnit_Framework_TestCase
         /** @var \PHPUnit_Framework_MockObject_MockObject $configMock */
         $configMock = $this->getConfigMock();
         $client = new Github($configMock);
-
-        $milestones = $client->getMilestones();
+        $client->getMilestones();
     }
 
     /**
@@ -61,8 +61,7 @@ class GithubClientTest extends \PHPUnit_Framework_TestCase
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
     private function getConfigMock() {
-        $configMock = $this->getMock(ConfigInterface::class);
-
+        $configMock = $this->createMock(ConfigInterface::class);
         $configMock->method('getCacheLocation')
             ->willReturn(getenv(Config::GH_CACHE_LOCATION));
 
