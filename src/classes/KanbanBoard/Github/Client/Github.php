@@ -87,7 +87,8 @@ class Github implements ClientInterface
 
         foreach ($repositories as $repository) {
             $milestones = $this->githubClient->api('issues')
-              ->milestones($this->config->getAccountName(), $repository);
+              ->milestones()
+              ->all($this->config->getAccountName(), $repository);
 
             $this->milestones[$repository] = is_array($milestones) ? $milestones: [];
         }
