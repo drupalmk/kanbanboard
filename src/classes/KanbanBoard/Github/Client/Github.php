@@ -110,12 +110,15 @@ class Github implements ClientInterface
         $milestones = $this->getMilestones();
         $this->issues = [];
 
-        foreach ($milestones as $repository => $milestone) {
-            $id = $milestone['number'];
-            $params = ['milestone' => $id, 'state' => 'all'];
-            $issues = $this->githubClient->api('issues')
-              ->all($this->config->getAccountName(), $repository, $params);
-            $this->issues[$id] = is_array($issues) ? $issues : [];
+        foreach ($milestones as $repository => $repositoryMilestones) {
+            foreach ($repositoryMilestones as $milestone) {
+                $id = $milestone['number'];
+                $params = ['milestone' => $id, 'state' => 'all'];
+                $issues = $this->githubClient->api('issues')
+                  ->all($this->config->getAccountName(), $repository, $params);
+
+                $this->issues[$id] = is_array($issues) ? $issues : [];
+            }
         }
 
         return $this->issues;
