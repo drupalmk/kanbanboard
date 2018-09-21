@@ -14,5 +14,10 @@ interface EntityInterface
     /**
      * @return string
      */
-    public function getTitle();
+    public function getTitle() : string;
+
+    /**
+     * @return int
+     */
+    public function getId() : int;
 }

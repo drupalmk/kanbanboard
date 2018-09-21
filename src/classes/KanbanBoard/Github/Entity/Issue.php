@@ -17,9 +17,17 @@ class Issue implements EntityInterface, IssueInterface
     /**
      * @return string
      */
-    public function getTitle()
+    public function getTitle() : string
     {
         // TODO: Implement getText() method.
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        // TODO: Implement getId() method.
     }
 
     /**

@@ -14,28 +14,40 @@ use KanbanBoard\Entity\MilestoneInterface;
 
 class Milestone implements EntityInterface, MilestoneInterface
 {
-
-    public function addIssue(IssueInterface $issue)
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
-        // TODO: Implement addIssue() method.
-    }
-
-    public function getIssues(): array
-    {
-        // TODO: Implement getIssue() method.
+        // TODO: Implement getId() method.
     }
 
     /**
      * @return string
      */
-    public function getTitle()
+    public function getTitle() : string
     {
         // TODO: Implement getText() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function addIssue(IssueInterface $issue)
+    {
+        // TODO: Implement addIssue() method.
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getIssues(): array
+    {
+        // TODO: Implement getIssue() method.
     }
 
     public function __toString()
     {
         return $this->getTitle();
     }
-
 }
