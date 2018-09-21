@@ -14,6 +14,6 @@ interface MilestoneInterface
 
     public function addIssue(IssueInterface $issue);
 
-    public function getIssue(): array;
+    public function getIssues(): array;
 
 }

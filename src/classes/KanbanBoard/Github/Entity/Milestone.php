@@ -20,7 +20,7 @@ class Milestone implements EntityInterface, MilestoneInterface
         // TODO: Implement addIssue() method.
     }
 
-    public function getIssue(): array
+    public function getIssues(): array
     {
         // TODO: Implement getIssue() method.
     }
