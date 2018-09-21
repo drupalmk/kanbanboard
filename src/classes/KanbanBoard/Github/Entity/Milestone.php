@@ -8,9 +8,9 @@
 
 namespace KanbanBoard\KanbanBoard\Github\Entity;
 
-use KanbanBoard\KanbanBoard\Entity\EntityInterface;
-use KanbanBoard\KanbanBoard\Entity\IssueInterface;
-use KanbanBoard\KanbanBoard\Entity\MilestoneInterface;
+use KanbanBoard\Entity\EntityInterface;
+use KanbanBoard\Entity\IssueInterface;
+use KanbanBoard\Entity\MilestoneInterface;
 
 class Milestone implements EntityInterface, MilestoneInterface
 {
