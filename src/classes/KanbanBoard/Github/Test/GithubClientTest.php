@@ -25,6 +25,7 @@ class GithubClientTest extends TestCase
     {
         $dotenv = new Dotenv(__DIR__, '/.env_test');
         $dotenv->load();
+        $this->testRepositoryName = getenv(self::GH_TEST_REPOSITORY_KEY);
     }
 
     public function testCacheDirectoryCreation() {
@@ -35,7 +36,6 @@ class GithubClientTest extends TestCase
 
     public function testFetchMilestones()
     {
-        $this->testRepositoryName = getenv(self::GH_TEST_REPOSITORY_KEY);
         $client = new Github($this->getConfigMock());
         $milestones = $client->getMilestones();
         $this->assertArrayHasKey($this->testRepositoryName, $milestones);
@@ -44,6 +44,7 @@ class GithubClientTest extends TestCase
     }
 
     /**
+     * @TODO in reality external exception should be wrapped or handle directly in the client.
      * @expectedException \Github\Exception\RuntimeException
      */
     public function testFetchMilestonesForNonExistingRepo()
@@ -53,6 +54,18 @@ class GithubClientTest extends TestCase
         $configMock = $this->getConfigMock();
         $client = new Github($configMock);
         $client->getMilestones();
+    }
+
+    public function testFetchIssues()
+    {
+        $config = $this->getConfigMock();
+        $client = new Github($config);
+        $issues = $client->getIssues();
+        $this->assertNotEmpty($issues);
+        $milestoneId = key($issues);
+        $milestoneIssues = $issues[$milestoneId];
+        $this->assertNotEmpty($milestoneIssues);
+        $this->assertNotEmpty($milestoneIssues[0]['title']);
     }
 
     /**
