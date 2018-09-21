@@ -117,7 +117,7 @@ class Github implements ClientInterface
                 $issues = $this->githubClient->api('issues')
                   ->all($this->config->getAccountName(), $repository, $params);
 
-                $this->issues[$id] = is_array($issues) ? $issues : [];
+                $this->issues[$milestone['id']] = is_array($issues) ? $issues : [];
             }
         }
 
