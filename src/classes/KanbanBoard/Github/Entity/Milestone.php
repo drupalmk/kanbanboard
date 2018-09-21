@@ -25,11 +25,16 @@ class Milestone implements MilestoneInterface
     private $title;
 
     /**
+     * @var array
+     */
+    private $issues;
+
+    /**
      * @param int $id
      */
     public function __construct($id)
     {
-        $this->id = $id;
+        $this->id = (int) $id;
     }
 
     /**
@@ -37,7 +42,7 @@ class Milestone implements MilestoneInterface
      */
     public function getId(): int
     {
-        // TODO: Implement getId() method.
+        return $this->id;
     }
 
     /**
@@ -45,7 +50,7 @@ class Milestone implements MilestoneInterface
      */
     public function setTitle(string $title)
     {
-        // TODO: Implement setTitle() method.
+        $this->title = $title;
     }
 
     /**
@@ -53,7 +58,7 @@ class Milestone implements MilestoneInterface
      */
     public function getTitle() : string
     {
-        // TODO: Implement getText() method.
+        return $this->title;
     }
 
     /**
@@ -61,7 +66,12 @@ class Milestone implements MilestoneInterface
      */
     public function addIssue(IssueInterface $issue)
     {
-        // TODO: Implement addIssue() method.
+        /**
+         * Here for few seconds I had an idea to check if same issue already exists in the list.
+         * Figured out that PHP still do not have __equals() method or similar.
+         * Deal with it.
+         */
+        $this->issues[] = $issue;
     }
 
     /**
@@ -69,11 +79,15 @@ class Milestone implements MilestoneInterface
      */
     public function getIssues(): array
     {
-        // TODO: Implement getIssue() method.
+        return $this->issues;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getTitle();
     }
+
 }

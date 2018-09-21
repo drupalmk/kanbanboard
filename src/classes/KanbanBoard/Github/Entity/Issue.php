@@ -12,12 +12,31 @@ use KanbanBoard\Entity\IssueInterface;
 
 class Issue implements IssueInterface
 {
+
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $title;
+
+    /**
+     * @param int $id
+     */
+    public function __construct($id)
+    {
+        $this->id = (int) $id;
+    }
+
     /**
      * @param string $title
      */
     public function setTitle(string $title)
     {
-        // TODO: Implement setTitle() method.
+        $this->title = $title;
     }
 
     /**
@@ -25,7 +44,7 @@ class Issue implements IssueInterface
      */
     public function getTitle() : string
     {
-        // TODO: Implement getText() method.
+        return $this->title;
     }
 
     /**

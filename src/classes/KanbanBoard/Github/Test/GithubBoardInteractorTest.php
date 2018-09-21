@@ -39,16 +39,20 @@ class GithubBoardInteractorTest extends TestCase
 
         $this->assertTrue(is_array($milestones));
         $this->assertNotEmpty($milestones);
-        $this->assertCount($milestones, 1);
+        $this->assertCount(1, $milestones);
         $this->assertContainsOnlyInstancesOf(MilestoneInterface::class, $milestones);
         $index = key($milestones);
         /** @var MilestoneInterface $milestone */
         $milestone = $milestones[$index];
+        $this->assertEquals('Sample milestone #1', $milestone->getTitle());
+        $this->assertEquals('Sample milestone #1', $milestone);
+        $this->assertNotEmpty($milestone->getId());
+        $this->assertTrue(is_numeric($milestone->getId()));
+
         $issues = $milestone->getIssues();
         $this->assertTrue(is_array($issues));
         $this->assertNotEmpty($issues);
         $this->assertContainsOnlyInstancesOf(IssueInterface::class, $issues);
-        $this->assertEquals('Sample milestone #1', $milestone->getTitle());
     }
 
     private function getClientMilestonesData()
