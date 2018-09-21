@@ -56,6 +56,13 @@ class GithubBoardInteractorTest extends TestCase
         $this->assertTrue(is_array($issues));
         $this->assertNotEmpty($issues);
         $this->assertContainsOnlyInstancesOf(IssueInterface::class, $issues);
+
+        $index = key($issues);
+        /** @var IssueInterface $issue */
+        $issue = $issues[$index];
+        $this->assertTrue(is_numeric($issue->getId()));
+        $this->assertNotEmpty($issue->getTitle());
+        $this->assertTrue(is_string($issue->getTitle()));
     }
 
     private function getClientMilestonesData()

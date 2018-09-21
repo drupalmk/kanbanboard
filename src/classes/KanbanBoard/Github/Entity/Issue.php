@@ -52,7 +52,7 @@ class Issue implements IssueInterface
      */
     public function getId(): int
     {
-        // TODO: Implement getId() method.
+        return $this->id;
     }
 
     /**
