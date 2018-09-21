@@ -13,6 +13,13 @@ use KanbanBoard\Entity\IssueInterface;
 
 class Issue implements EntityInterface, IssueInterface
 {
+    /**
+     * @param string $title
+     */
+    public function setTitle(string $title)
+    {
+        // TODO: Implement setTitle() method.
+    }
 
     /**
      * @return string

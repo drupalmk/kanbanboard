@@ -14,12 +14,39 @@ use KanbanBoard\Entity\MilestoneInterface;
 
 class Milestone implements EntityInterface, MilestoneInterface
 {
+
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $title;
+
+    /**
+     * @param int $id
+     */
+    public function __construct($id)
+    {
+        $this->id = $id;
+    }
+
     /**
      * @return int
      */
     public function getId(): int
     {
         // TODO: Implement getId() method.
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle(string $title)
+    {
+        // TODO: Implement setTitle() method.
     }
 
     /**

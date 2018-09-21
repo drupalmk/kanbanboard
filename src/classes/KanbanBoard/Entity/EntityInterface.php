@@ -17,6 +17,11 @@ interface EntityInterface
     public function getTitle() : string;
 
     /**
+     * @param string $title
+     */
+    public function setTitle(string $title);
+
+    /**
      * @return int
      */
     public function getId() : int;
