@@ -8,10 +8,9 @@
 
 namespace KanbanBoard\Github\Entity;
 
-use KanbanBoard\Entity\EntityInterface;
 use KanbanBoard\Entity\IssueInterface;
 
-class Issue implements EntityInterface, IssueInterface
+class Issue implements IssueInterface
 {
     /**
      * @param string $title

@@ -8,7 +8,7 @@
 
 namespace KanbanBoard\Entity;
 
-interface IssueInterface
+interface IssueInterface extends EntityInterface
 {
 
 }

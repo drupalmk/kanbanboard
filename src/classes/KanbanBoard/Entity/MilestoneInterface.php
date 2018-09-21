@@ -8,7 +8,7 @@
 
 namespace KanbanBoard\Entity;
 
-interface MilestoneInterface
+interface MilestoneInterface extends EntityInterface
 {
 
     /**

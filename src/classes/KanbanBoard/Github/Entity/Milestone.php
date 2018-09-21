@@ -8,11 +8,10 @@
 
 namespace KanbanBoard\KanbanBoard\Github\Entity;
 
-use KanbanBoard\Entity\EntityInterface;
 use KanbanBoard\Entity\IssueInterface;
 use KanbanBoard\Entity\MilestoneInterface;
 
-class Milestone implements EntityInterface, MilestoneInterface
+class Milestone implements MilestoneInterface
 {
 
     /**
