@@ -57,6 +57,10 @@ class GithubBoardInteractorTest extends TestCase
         $this->assertNotEmpty($issues);
         $this->assertContainsOnlyInstancesOf(IssueInterface::class, $issues);
 
+        $issues = $milestone->issues;
+        $this->assertTrue(is_array($issues));
+        $this->assertContainsOnlyInstancesOf(IssueInterface::class, $issues);
+
         $index = key($issues);
         /** @var IssueInterface $issue */
         $issue = $issues[$index];

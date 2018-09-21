@@ -83,6 +83,21 @@ class Milestone implements MilestoneInterface
     }
 
     /**
+     * @param string $name
+     *    Property name.
+     *
+     * @return mixed
+     */
+    public function __get($name)
+    {
+        if ($name == 'issues') {
+            return $this->getIssues();
+        }
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function __toString()
