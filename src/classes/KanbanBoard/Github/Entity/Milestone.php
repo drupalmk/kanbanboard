@@ -28,14 +28,14 @@ class Milestone implements EntityInterface, MilestoneInterface
     /**
      * @return string
      */
-    public function getText()
+    public function getTitle()
     {
         // TODO: Implement getText() method.
     }
 
     public function __toString()
     {
-        return $this->getText();
+        return $this->getTitle();
     }
 
 }

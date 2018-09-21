@@ -14,5 +14,5 @@ interface EntityInterface
     /**
      * @return string
      */
-    public function getText();
+    public function getTitle();
 }

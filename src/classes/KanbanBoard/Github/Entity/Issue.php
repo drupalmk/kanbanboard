@@ -17,7 +17,7 @@ class Issue implements EntityInterface, IssueInterface
     /**
      * @return string
      */
-    public function getText()
+    public function getTitle()
     {
         // TODO: Implement getText() method.
     }
@@ -27,6 +27,6 @@ class Issue implements EntityInterface, IssueInterface
      */
     public function __toString()
     {
-        return $this->getText();
+        return $this->getTitle();
     }
 }
