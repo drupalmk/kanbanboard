@@ -11,7 +11,6 @@ namespace KanbanBoard\Github\Test;
 use Dotenv\Dotenv;
 use KanbanBoard\Config\ConfigInterface;
 use KanbanBoard\Github\Client\Github;
-use KanbanBoard\Github\Config\Config;
 use PHPUnit\Framework\TestCase;
 
 /**
