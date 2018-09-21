@@ -9,9 +9,16 @@
 namespace KanbanBoard\KanbanBoard\Github\Test;
 
 use KanbanBoard\Client\ClientInterface;
+use KanbanBoard\Entity\IssueInterface;
+use KanbanBoard\Entity\MilestoneInterface;
 use KanbanBoard\Github\Board\BoardInteractor;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * This tests aren't require access to Github API. Sample data is provided.
+ *
+ * @package KanbanBoard\KanbanBoard\Github\Test
+ */
 class GithubBoardInteractorTest extends TestCase
 {
 
@@ -29,10 +36,19 @@ class GithubBoardInteractorTest extends TestCase
 
         $interactor = new BoardInteractor($client);
         $milestones = $interactor->getMilestones();
+
         $this->assertTrue(is_array($milestones));
         $this->assertNotEmpty($milestones);
         $this->assertCount($milestones, 1);
-
+        $this->assertContainsOnlyInstancesOf(MilestoneInterface::class, $milestones);
+        $index = key($milestones);
+        /** @var MilestoneInterface $milestone */
+        $milestone = $milestones[$index];
+        $issues = $milestone->getIssues();
+        $this->assertTrue(is_array($issues));
+        $this->assertNotEmpty($issues);
+        $this->assertContainsOnlyInstancesOf(IssueInterface::class, $issues);
+        $this->assertEquals('Sample milestone #1', $milestone->getTitle());
     }
 
     private function getClientMilestonesData()
