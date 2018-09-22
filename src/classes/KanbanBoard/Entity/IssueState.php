@@ -11,7 +11,7 @@ namespace KanbanBoard\Entity;
 /**
  * Class IssueState
  *
- * Main idea was to use SplEnum here, but it's not available in PHP7.
+ * Main idea was to use SplEnum here, but it's not available in PHP7, so plan failed.
  *
  * @package KanbanBoard\Entity
  */
@@ -37,14 +37,7 @@ class IssueState
      */
     public static function queued()
     {
-        if (isset(self::$instancesMap[self::Queued])) {
-            return self::$instancesMap[self::Queued];
-        }
-
-        $queued = new IssueState(self::Queued);
-        self::$instancesMap[self::Queued] = $queued;
-
-        return $queued;
+        return self::getStateInstance(self::Queued);
     }
 
     /**
@@ -53,14 +46,7 @@ class IssueState
      */
     public static function active()
     {
-        if (isset(self::$instancesMap[self::Active])) {
-            return self::$instancesMap[self::Active];
-        }
-
-        $active = new IssueState(self::Active);
-        self::$instancesMap[self::Active] = $active;
-
-        return $active;
+        return self::getStateInstance(self::Active);
     }
 
     /**
@@ -69,14 +55,26 @@ class IssueState
      */
     public static function completed()
     {
-        if (isset(self::$instancesMap[self::Completed])) {
-            return self::$instancesMap[self::Completed];
+        return self::getStateInstance(self::Completed);
+    }
+
+    /**
+     * @param int $state
+     *
+     * @return \KanbanBoard\Entity\IssueState
+     *
+     * @throws \Exception
+     */
+    private static function getStateInstance(int $state)
+    {
+        if (isset(self::$instancesMap[$state])) {
+            return self::$instancesMap[$state];
         }
 
-        $completed = new IssueState(self::Completed);
-        self::$instancesMap[self::Completed] = $completed;
+        $instance = new IssueState($state);
+        self::$instancesMap[$state] = $instance;
 
-        return $completed;
+        return $instance;
     }
 
     /**
