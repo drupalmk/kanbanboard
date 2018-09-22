@@ -18,6 +18,9 @@ namespace KanbanBoard\Entity;
 class IssueState
 {
 
+    /**
+     * @var int
+     */
     private $state;
 
     private static $allowedState = [
