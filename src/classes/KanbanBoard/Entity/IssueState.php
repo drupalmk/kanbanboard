@@ -13,9 +13,23 @@ class IssueState
 
     private $state;
 
+    private static $allowedState = [
+      self::Queued => 'queued',
+      self::Active => 'active',
+      self::Completed => 'completed',
+    ];
+
+    /**
+     * IssueState constructor.
+     *
+     * @param mixed $state
+     *    Numeric value or state label.
+     *
+     * @throws \Exception
+     */
     public function __construct($state)
     {
-        $allowedValues = $this->getAllowedStates();
+        $allowedValues = self::getAllowedStates();
         if (is_string($state)) {
             if (!in_array($state, $allowedValues)) {
                 throw new \Exception(
@@ -25,24 +39,21 @@ class IssueState
             }
 
             $this->state = (int)array_search($state, $allowedValues);
-
         } else {
             if (is_numeric($state)) {
-                $state = (int)$state;
+                $state = (int) $state;
                 if (!array_key_exists($state, $allowedValues)) {
                     throw new \Exception(
-                      'Invalid state value: ' . $state . '. Allowed values: '
-                       . implode(', ', array_keys($allowedValues))
-
+                  'Invalid state value: ' . $state . '. Allowed values: '
+                        . implode(', ', array_keys($allowedValues))
                     );
                 }
                 $this->state = $state;
             }
         }
-
     }
 
-    public function getAllowedStates()
+    private static function getAllowedStates()
     {
         return [
           self::Queued => 'queued',
@@ -51,6 +62,10 @@ class IssueState
         ];
     }
 
+    /**
+     * @return string
+     *    State label.
+     */
     public function __toString()
     {
         $allowedValues = $this->getAllowedStates();
