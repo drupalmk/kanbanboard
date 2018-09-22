@@ -15,30 +15,15 @@ use PHPUnit\Framework\TestCase;
 class IssueStateTest extends TestCase
 {
     public function testIssueState() {
-        $state = new IssueState(IssueState::Queued);
+        $state = IssueState::queued();
         $this->assertEquals('queued', $state);
 
-        $state = new IssueState('queued');
-        $this->assertEquals('queued', $state);
 
-        $state = new IssueState(IssueState::Active);
+        $state = IssueState::active();
         $this->assertEquals('active', $state);
 
-        $state = new IssueState('active');
-        $this->assertEquals('active', $state);
-
-        $state = new IssueState(IssueState::Completed);
-        $this->assertEquals('completed', $state);
-
-        $state = new IssueState('completed');
+        $state = IssueState::completed();
         $this->assertEquals('completed', $state);
     }
-
-    public function testInvalidState() {
-        $this->expectExceptionMessage('Invalid state value: 5. Allowed values: 1, 2, 3');
-        $state = new IssueState(5);
-
-        $this->expectExceptionMessage('Invalid state label: invalid. Allowed values: queued, active, completed');
-        $state = new IssueState('invalid');
-    }
+    
 }
