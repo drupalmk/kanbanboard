@@ -29,7 +29,7 @@ class IssueState
      */
     public function __construct($state)
     {
-        $allowedValues = self::getAllowedStates();
+        $allowedValues = self::$allowedState;
         if (is_string($state)) {
             if (!in_array($state, $allowedValues)) {
                 throw new \Exception(
@@ -53,24 +53,13 @@ class IssueState
         }
     }
 
-    private static function getAllowedStates()
-    {
-        return [
-          self::Queued => 'queued',
-          self::Active => 'active',
-          self::Completed => 'completed',
-        ];
-    }
-
     /**
      * @return string
      *    State label.
      */
     public function __toString()
     {
-        $allowedValues = $this->getAllowedStates();
-
-        return $allowedValues[$this->state];
+        return self::$allowedState[$this->state];
     }
 
     const Queued = 1;
