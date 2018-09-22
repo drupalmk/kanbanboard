@@ -90,11 +90,7 @@ class Milestone implements MilestoneInterface
      */
     public function __get($name)
     {
-        if ($name == 'issues') {
-            return $this->getIssues();
-        }
-
-        return $this;
+        return $this->$name;
     }
 
     /**
