@@ -9,6 +9,7 @@
 namespace KanbanBoard\Github\Entity;
 
 use KanbanBoard\Entity\IssueInterface;
+use KanbanBoard\Entity\IssueState;
 
 class Issue implements IssueInterface
 {
@@ -22,6 +23,11 @@ class Issue implements IssueInterface
      * @var string
      */
     private $title;
+
+    /**
+     * @var IssueState;
+     */
+    private $state;
 
     /**
      * @param int $id
@@ -53,6 +59,24 @@ class Issue implements IssueInterface
     public function getId(): int
     {
         return $this->id;
+    }
+
+    /**
+     * @param \KanbanBoard\Entity\IssueState $state
+     *
+     * @return void
+     */
+    public function setState(IssueState $state)
+    {
+        $this->state = $state;
+    }
+
+    /**
+     * @return \KanbanBoard\Entity\IssueState
+     */
+    public function getState(): IssueState
+    {
+        return $this->state;
     }
 
     /**
