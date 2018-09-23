@@ -35,6 +35,11 @@ class Issue implements IssueInterface
     private $url;
 
     /**
+     * @var string
+     */
+    private $avatarUrl;
+
+    /**
      * @param int $id
      */
     public function __construct($id)
@@ -103,11 +108,27 @@ class Issue implements IssueInterface
     }
 
     /**
+     * @param string $url
+     *
+     * @return void
+     */
+    public function setAvatarUrl(string $url)
+    {
+        $this->avatarUrl = $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvatarUrl(): string
+    {
+        return $this->avatarUrl ?: '';
+    }
+    /**
      * @return string
      */
     public function __toString()
     {
         return $this->getTitle();
     }
-
 }

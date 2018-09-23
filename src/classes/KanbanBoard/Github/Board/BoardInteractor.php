@@ -69,6 +69,7 @@ class BoardInteractor implements BoardInteractorInterface
                         $issue->setTitle($issueData['title']);
                         $issue->setUrl($issueData['html_url']);
                         $this->setIssueState($issue, $issueData);
+                        $this->setIssueAvatarUrl($issue, $issueData);
                         $milestone->addIssue($issue);
                     }
                 }
@@ -118,5 +119,13 @@ class BoardInteractor implements BoardInteractorInterface
         }
 
         $issue->setState($state);
+    }
+
+    private function setIssueAvatarUrl(IssueInterface $issue, array $data) {
+        if (!isset($data['assignee'])) {
+            return;
+        }
+        $url = !empty($data['assignee']['avatar_url']) ? $data['assignee']['avatar_url'] : '';
+        $issue->setAvatarUrl($url);
     }
 }

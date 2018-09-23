@@ -74,11 +74,15 @@ class GithubBoardInteractorTest extends BaseTest
         $this->assertSame($issue->getState(), IssueState::queued());
         $url = 'https://github.com/drupalmk/sample-repository/issues/4';
         $this->assertSame($url, $issue->getUrl());
+        $this->assertEmpty($issue->getAvatarUrl());
 
         /** @var IssueInterface $pausedIssue */
         $pausedIssue = $issues[2];
         $this->assertNotNull($pausedIssue);
         $this->assertSame($pausedIssue->getState(), IssueState::paused());
+        $this->assertNotEmpty($pausedIssue->getAvatarUrl());
+        $avatarUrl = 'https://avatars1.githubusercontent.com/u/596909?v=4';
+        $this->assertSame($pausedIssue->getAvatarUrl(), $avatarUrl);
 
     }
 

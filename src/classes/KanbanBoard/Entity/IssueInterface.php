@@ -23,4 +23,16 @@ interface IssueInterface extends EntityInterface
      */
     public function getState() : IssueState;
 
+    /**
+     * @param string $url
+     *
+     * @return void
+     */
+    public function setAvatarUrl(string $url);
+
+    /**
+     * @return string
+     */
+    public function getAvatarUrl() : string;
+
 }
