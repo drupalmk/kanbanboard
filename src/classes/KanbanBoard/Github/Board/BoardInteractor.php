@@ -15,7 +15,7 @@ use KanbanBoard\Entity\IssueInterface;
 use KanbanBoard\Entity\IssueState;
 use KanbanBoard\Entity\MilestoneInterface;
 use KanbanBoard\Github\Entity\Issue;
-use KanbanBoard\KanbanBoard\Github\Entity\Milestone;
+use KanbanBoard\Github\Entity\Milestone;
 
 /**
  * The purpose of this class is to map API data into entites.

@@ -6,7 +6,7 @@
  * Time: 12:41
  */
 
-namespace KanbanBoard\KanbanBoard\Github\Entity;
+namespace KanbanBoard\Github\Entity;
 
 use KanbanBoard\Entity\IssueInterface;
 use KanbanBoard\Entity\MilestoneInterface;
