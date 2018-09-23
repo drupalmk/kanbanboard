@@ -75,6 +75,11 @@ class GithubBoardInteractorTest extends BaseTest
         $url = 'https://github.com/drupalmk/sample-repository/issues/4';
         $this->assertSame($url, $issue->getUrl());
 
+        /** @var IssueInterface $pausedIssue */
+        $pausedIssue = $issues[2];
+        $this->assertNotNull($pausedIssue);
+        $this->assertSame($pausedIssue->getState(), IssueState::paused());
+
     }
 
     private function getClientMilestonesData()

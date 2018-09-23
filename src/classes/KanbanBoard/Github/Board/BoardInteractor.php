@@ -101,6 +101,14 @@ class BoardInteractor implements BoardInteractorInterface
         switch ($stateLabel) {
             case 'open':
                 $state = $assignee ? IssueState::active() : IssueState::queued();
+                if (!empty($issueData['labels']) && $state === IssueState::active()) {
+                    $issueLabels = array_column($issueData['labels'], 'name');
+                    $pausedLabels = $this->config->getPausedLabels();
+                    $sharedLabels = array_intersect($pausedLabels, $issueLabels);
+                    if (!empty($sharedLabels)) {
+                        $state = IssueState::paused();
+                    }
+                }
                 break;
             case 'closed':
                 $state = IssueState::completed();
