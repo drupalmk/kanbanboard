@@ -22,6 +22,9 @@ class IssueStateTest extends TestCase
         $state = IssueState::active();
         $this->assertEquals('active', $state);
 
+        $state = IssueState::paused();
+        $this->assertEquals('paused', $state);
+
         $state = IssueState::completed();
         $this->assertEquals('completed', $state);
     }

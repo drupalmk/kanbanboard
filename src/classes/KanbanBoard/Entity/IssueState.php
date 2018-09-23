@@ -26,6 +26,7 @@ class IssueState
     private static $allowedState = [
       self::Queued => 'queued',
       self::Active => 'active',
+      self::Paused => 'paused',
       self::Completed => 'completed',
     ];
 
@@ -47,6 +48,15 @@ class IssueState
     public static function active()
     {
         return self::getStateInstance(self::Active);
+    }
+
+    /**
+     * @return \KanbanBoard\Entity\IssueState
+     * @throws \Exception
+     */
+    public static function paused()
+    {
+        return self::getStateInstance(self::Paused);
     }
 
     /**
@@ -124,6 +134,8 @@ class IssueState
 
     const Active = 2;
 
-    const Completed = 3;
+    const Paused = 3;
+
+    const Completed = 4;
 
 }
