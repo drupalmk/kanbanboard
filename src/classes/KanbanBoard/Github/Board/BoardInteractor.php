@@ -65,6 +65,10 @@ class BoardInteractor implements BoardInteractorInterface
 
                 if (isset($issues[$id]) && !empty($issues[$id])) {
                     foreach ($issues[$id] as $issueData) {
+                        // Skip issue that have open pull request based on previous solution.
+                        if (isset($issueData['pull request'])) {
+                            continue;
+                        }
                         $issue = new Issue($issueData['id']);
                         $issue->setTitle($issueData['title']);
                         $issue->setUrl($issueData['html_url']);
@@ -125,7 +129,7 @@ class BoardInteractor implements BoardInteractorInterface
         if (!isset($data['assignee'])) {
             return;
         }
-        $url = !empty($data['assignee']['avatar_url']) ? $data['assignee']['avatar_url'] : '';
+        $url = $data['assignee']['avatar_url'] ?: '';
         $issue->setAvatarUrl($url);
     }
 }
