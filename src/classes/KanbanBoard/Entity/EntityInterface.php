@@ -12,6 +12,11 @@ namespace KanbanBoard\Entity;
 interface EntityInterface
 {
     /**
+     * @return int
+     */
+    public function getId() : int;
+
+    /**
      * @return string
      */
     public function getTitle() : string;
@@ -22,7 +27,14 @@ interface EntityInterface
     public function setTitle(string $title);
 
     /**
-     * @return int
+     * @param string $url
+     *
+     * @return void
      */
-    public function getId() : int;
+    public function setUrl(string $url);
+
+    /**
+     * @return string
+     */
+    public function getUrl() : string;
 }

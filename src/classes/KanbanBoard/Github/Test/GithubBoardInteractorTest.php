@@ -53,6 +53,8 @@ class GithubBoardInteractorTest extends TestCase
         $this->assertNotEmpty($milestone->getId());
         $this->assertTrue(is_numeric($milestone->getId()));
         $this->assertSame(25, $milestone->getProgress());
+        $url = 'https://github.com/drupalmk/sample-repository/milestone/1';
+        $this->assertSame($url, $milestone->getUrl());
 
         $issues = $milestone->getIssues();
         $this->assertTrue(is_array($issues));
@@ -70,6 +72,8 @@ class GithubBoardInteractorTest extends TestCase
         $this->assertNotEmpty($issue->getTitle());
         $this->assertTrue(is_string($issue->getTitle()));
         $this->assertSame($issue->getState(), IssueState::queued());
+        $url = 'https://github.com/drupalmk/sample-repository/issues/4';
+        $this->assertSame($url, $issue->getUrl());
 
     }
 

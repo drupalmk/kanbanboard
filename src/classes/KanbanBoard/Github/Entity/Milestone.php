@@ -30,6 +30,11 @@ class Milestone implements MilestoneInterface
     private $progress;
 
     /**
+     * @var string
+     */
+    private $url;
+
+    /**
      * @var array
      */
     private $issues;
@@ -67,6 +72,24 @@ class Milestone implements MilestoneInterface
     }
 
     /**
+     * @param string $url
+     *
+     * @return void
+     */
+    public function setUrl(string $url)
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    /**
      * @param int $progress
      *
      * @return void
@@ -85,7 +108,7 @@ class Milestone implements MilestoneInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function addIssue(IssueInterface $issue)
     {
@@ -98,7 +121,7 @@ class Milestone implements MilestoneInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getIssues(): array
     {

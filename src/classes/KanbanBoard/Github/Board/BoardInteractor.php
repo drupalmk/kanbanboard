@@ -53,11 +53,13 @@ class BoardInteractor implements BoardInteractorInterface
                 $milestone = new Milestone($id);
                 $milestone->setTitle($milestoneData['title']);
                 $this->setMilestoneProgress($milestone, $milestoneData);
+                $milestone->setUrl($milestoneData['html_url']);
 
                 if (isset($issues[$id]) && !empty($issues[$id])) {
                     foreach ($issues[$id] as $issueData) {
                         $issue = new Issue($issueData['id']);
                         $issue->setTitle($issueData['title']);
+                        $issue->setUrl($issueData['html_url']);
                         $this->setIssueState($issue, $issueData);
                         $milestone->addIssue($issue);
                     }

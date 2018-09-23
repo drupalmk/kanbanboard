@@ -30,6 +30,11 @@ class Issue implements IssueInterface
     private $state;
 
     /**
+     * @var string
+     */
+    private $url;
+
+    /**
      * @param int $id
      */
     public function __construct($id)
@@ -80,10 +85,29 @@ class Issue implements IssueInterface
     }
 
     /**
+     * @param string $url
+     *
+     * @return void
+     */
+    public function setUrl(string $url)
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    /**
      * @return string
      */
     public function __toString()
     {
         return $this->getTitle();
     }
+
 }
