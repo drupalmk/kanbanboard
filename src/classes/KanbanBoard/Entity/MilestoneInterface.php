@@ -23,4 +23,16 @@ interface MilestoneInterface extends EntityInterface
      */
     public function getIssues(): array;
 
+    /**
+     * @param int $progress
+     *
+     * @return void
+     */
+    public function setProgress(int $progress);
+
+    /**
+     * @return int
+     */
+    public function getProgress() : int;
+
 }

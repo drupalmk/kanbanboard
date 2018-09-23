@@ -10,6 +10,7 @@ namespace KanbanBoard\KanbanBoard\Github\Test;
 
 use KanbanBoard\Client\ClientInterface;
 use KanbanBoard\Entity\IssueInterface;
+use KanbanBoard\Entity\IssueState;
 use KanbanBoard\Entity\MilestoneInterface;
 use KanbanBoard\Github\Board\BoardInteractor;
 use PHPUnit\Framework\TestCase;
@@ -51,6 +52,7 @@ class GithubBoardInteractorTest extends TestCase
         $this->assertEquals('Sample milestone #1', $milestone);
         $this->assertNotEmpty($milestone->getId());
         $this->assertTrue(is_numeric($milestone->getId()));
+        $this->assertSame(25, $milestone->getProgress());
 
         $issues = $milestone->getIssues();
         $this->assertTrue(is_array($issues));
@@ -67,6 +69,8 @@ class GithubBoardInteractorTest extends TestCase
         $this->assertTrue(is_numeric($issue->getId()));
         $this->assertNotEmpty($issue->getTitle());
         $this->assertTrue(is_string($issue->getTitle()));
+        $this->assertSame($issue->getState(), IssueState::queued());
+
     }
 
     private function getClientMilestonesData()

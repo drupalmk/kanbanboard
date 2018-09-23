@@ -25,6 +25,11 @@ class Milestone implements MilestoneInterface
     private $title;
 
     /**
+     * @var int
+     */
+    private $progress;
+
+    /**
      * @var array
      */
     private $issues;
@@ -59,6 +64,24 @@ class Milestone implements MilestoneInterface
     public function getTitle() : string
     {
         return $this->title;
+    }
+
+    /**
+     * @param int $progress
+     *
+     * @return void
+     */
+    public function setProgress(int $progress)
+    {
+        $this->progress = $progress;
+    }
+
+    /**
+     * @return int
+     */
+    public function getProgress(): int
+    {
+        return $this->progress;
     }
 
     /**
@@ -100,5 +123,4 @@ class Milestone implements MilestoneInterface
     {
         return $this->getTitle();
     }
-
 }
