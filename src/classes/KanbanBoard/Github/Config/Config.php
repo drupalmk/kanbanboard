@@ -27,9 +27,11 @@ class Config implements ConfigInterface
 
     const GH_REPOSITORIES = 'GH_REPOSITORIES';
 
+    const GH_PAUSED_LABELS = 'GH_PAUSED_LABELS';
+
     const GH_CACHE_LOCATION = 'GH_CACHE_LOCATION';
 
-    const GH_REPOSITORY_NAMES_SEPARATOR = '|';
+    const GH_MULTIPLE_VALUES_SEPARATOR = '|';
 
     public function __construct($configFileDirectory)
     {
@@ -68,15 +70,17 @@ class Config implements ConfigInterface
     {
         $names = getenv(self::GH_REPOSITORIES);
 
-        return explode(self::GH_REPOSITORY_NAMES_SEPARATOR, $names);
+        return explode(self::GH_MULTIPLE_VALUES_SEPARATOR, $names);
     }
 
     /**
      * @return array
      */
-    public function getPausedTags(): array
+    public function getPausedLabels(): array
     {
-        return ['waiting-for-feedback'];
+        $tags = getenv(self::GH_PAUSED_LABELS);
+
+        return explode(self::GH_MULTIPLE_VALUES_SEPARATOR, $tags);
     }
 
     /**

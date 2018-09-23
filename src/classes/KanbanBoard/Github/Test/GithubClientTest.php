@@ -8,10 +8,7 @@
 
 namespace KanbanBoard\Github\Test;
 
-use Dotenv\Dotenv;
-use KanbanBoard\Config\ConfigInterface;
 use KanbanBoard\Github\Client\Github;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Class GithubClientTest
@@ -20,16 +17,8 @@ use PHPUnit\Framework\TestCase;
  *
  * @package KanbanBoard\Github\Test
  */
-class GithubClientTest extends TestCase
+class GithubClientTest extends BaseTest
 {
-    private $testRepositoryName;
-
-    public function setUp()
-    {
-        $dotenv = new Dotenv(__DIR__, '/.env_test');
-        $dotenv->load();
-        $this->testRepositoryName = getenv(self::GH_TEST_REPOSITORY_KEY);
-    }
 
     public function testCacheDirectoryCreation() {
         $configMock = $this->getConfigMock();
@@ -70,43 +59,4 @@ class GithubClientTest extends TestCase
         $this->assertNotEmpty($milestoneIssues);
         $this->assertNotEmpty($milestoneIssues[0]['title']);
     }
-
-    /**
-     * Get Config mock. By default its returns available values from .env_test file.
-     *
-     * @return \PHPUnit_Framework_MockObject_MockObject
-     */
-    private function getConfigMock() {
-        $configMock = $this->createMock(ConfigInterface::class);
-        $configMock->method('getCacheLocation')
-            ->willReturn(getenv(self::GH_TEST_CACHE_LOCATION));
-
-        $configMock->method('getRepositoryList')
-            ->will(
-              $this->returnCallback(function() {
-                  return [$this->testRepositoryName];
-              })
-            );
-
-        $configMock->method('getAccountName')
-          ->willReturn(getenv(self::GH_TEST_ACCOUNT));
-
-        $configMock->method('getClientId')
-            ->willReturn(getenv(self::GH_TEST_CLIENT_ID));
-
-        $configMock->method('getClientSecret')
-            ->willReturn(getenv(self::GH_TEST_CLIENT_SECRET));
-
-        return $configMock;
-    }
-
-    const GH_TEST_REPOSITORY_KEY = 'GH_TEST_REPOSITORY_NAME';
-
-    const GH_TEST_CACHE_LOCATION = 'GH_TEST_CACHE_LOCATION';
-
-    const GH_TEST_ACCOUNT = 'GH_TEST_ACCOUNT';
-
-    const GH_TEST_CLIENT_ID = 'GH_TEST_CLIENT_ID';
-
-    const GH_TEST_CLIENT_SECRET = 'GH_TEST_CLIENT_SECRET';
 }

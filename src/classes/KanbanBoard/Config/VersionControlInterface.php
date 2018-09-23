@@ -24,5 +24,5 @@ interface VersionControlInterface
     /**
      * @return array
      */
-    public function getPausedTags(): array;
+    public function getPausedLabels(): array;
 }

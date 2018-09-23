@@ -13,14 +13,14 @@ use KanbanBoard\Entity\IssueInterface;
 use KanbanBoard\Entity\IssueState;
 use KanbanBoard\Entity\MilestoneInterface;
 use KanbanBoard\Github\Board\BoardInteractor;
-use PHPUnit\Framework\TestCase;
+use KanbanBoard\Github\Test\BaseTest;
 
 /**
  * This tests aren't require access to Github API. Sample data is provided.
  *
  * @package KanbanBoard\KanbanBoard\Github\Test
  */
-class GithubBoardInteractorTest extends TestCase
+class GithubBoardInteractorTest extends BaseTest
 {
 
     public function testFetchMilestones()
@@ -35,7 +35,7 @@ class GithubBoardInteractorTest extends TestCase
         $client->method('getIssues')
           ->willReturn($this->getClientIssuesData());
 
-        $interactor = new BoardInteractor($client);
+        $interactor = new BoardInteractor($client, $this->getConfigMock());
         $milestones = $interactor->getMilestones();
 
         $this->assertTrue(is_array($milestones));
@@ -127,11 +127,11 @@ class GithubBoardInteractorTest extends TestCase
 
     private function getClientIssuesData()
     {
-        return [
+        return array (
           3655943 =>
-            [
+            array (
               0 =>
-                [
+                array (
                   'url' => 'https://api.github.com/repos/drupalmk/sample-repository/issues/4',
                   'repository_url' => 'https://api.github.com/repos/drupalmk/sample-repository',
                   'labels_url' => 'https://api.github.com/repos/drupalmk/sample-repository/issues/4/labels{/name}',
@@ -143,7 +143,7 @@ class GithubBoardInteractorTest extends TestCase
                   'number' => 4,
                   'title' => 'Another issue',
                   'user' =>
-                    [
+                    array (
                       'login' => 'drupalmk',
                       'id' => 596909,
                       'node_id' => 'MDQ6VXNlcjU5NjkwOQ==',
@@ -162,18 +162,18 @@ class GithubBoardInteractorTest extends TestCase
                       'received_events_url' => 'https://api.github.com/users/drupalmk/received_events',
                       'type' => 'User',
                       'site_admin' => false,
-                    ],
+                    ),
                   'labels' =>
-                    [
-                    ],
+                    array (
+                    ),
                   'state' => 'open',
                   'locked' => false,
-                  'assignee' => null,
+                  'assignee' => NULL,
                   'assignees' =>
-                    [
-                    ],
+                    array (
+                    ),
                   'milestone' =>
-                    [
+                    array (
                       'url' => 'https://api.github.com/repos/drupalmk/sample-repository/milestones/1',
                       'html_url' => 'https://github.com/drupalmk/sample-repository/milestone/1',
                       'labels_url' => 'https://api.github.com/repos/drupalmk/sample-repository/milestones/1/labels',
@@ -183,7 +183,7 @@ class GithubBoardInteractorTest extends TestCase
                       'title' => 'Sample milestone #1',
                       'description' => '',
                       'creator' =>
-                        [
+                        array (
                           'login' => 'drupalmk',
                           'id' => 596909,
                           'node_id' => 'MDQ6VXNlcjU5NjkwOQ==',
@@ -202,24 +202,24 @@ class GithubBoardInteractorTest extends TestCase
                           'received_events_url' => 'https://api.github.com/users/drupalmk/received_events',
                           'type' => 'User',
                           'site_admin' => false,
-                        ],
+                        ),
                       'open_issues' => 3,
                       'closed_issues' => 1,
                       'state' => 'open',
                       'created_at' => '2018-09-14T22:02:39Z',
                       'updated_at' => '2018-09-17T13:45:33Z',
                       'due_on' => '2018-09-24T07:00:00Z',
-                      'closed_at' => null,
-                    ],
+                      'closed_at' => NULL,
+                    ),
                   'comments' => 0,
                   'created_at' => '2018-09-17T13:45:33Z',
                   'updated_at' => '2018-09-17T13:45:33Z',
-                  'closed_at' => null,
+                  'closed_at' => NULL,
                   'author_association' => 'OWNER',
                   'body' => '',
-                ],
+                ),
               1 =>
-                [
+                array (
                   'url' => 'https://api.github.com/repos/drupalmk/sample-repository/issues/3',
                   'repository_url' => 'https://api.github.com/repos/drupalmk/sample-repository',
                   'labels_url' => 'https://api.github.com/repos/drupalmk/sample-repository/issues/3/labels{/name}',
@@ -231,7 +231,7 @@ class GithubBoardInteractorTest extends TestCase
                   'number' => 3,
                   'title' => 'Sample issue #3',
                   'user' =>
-                    [
+                    array (
                       'login' => 'drupalmk',
                       'id' => 596909,
                       'node_id' => 'MDQ6VXNlcjU5NjkwOQ==',
@@ -250,14 +250,14 @@ class GithubBoardInteractorTest extends TestCase
                       'received_events_url' => 'https://api.github.com/users/drupalmk/received_events',
                       'type' => 'User',
                       'site_admin' => false,
-                    ],
+                    ),
                   'labels' =>
-                    [
-                    ],
+                    array (
+                    ),
                   'state' => 'closed',
                   'locked' => false,
                   'assignee' =>
-                    [
+                    array (
                       'login' => 'drupalmk',
                       'id' => 596909,
                       'node_id' => 'MDQ6VXNlcjU5NjkwOQ==',
@@ -276,11 +276,11 @@ class GithubBoardInteractorTest extends TestCase
                       'received_events_url' => 'https://api.github.com/users/drupalmk/received_events',
                       'type' => 'User',
                       'site_admin' => false,
-                    ],
+                    ),
                   'assignees' =>
-                    [
+                    array (
                       0 =>
-                        [
+                        array (
                           'login' => 'drupalmk',
                           'id' => 596909,
                           'node_id' => 'MDQ6VXNlcjU5NjkwOQ==',
@@ -299,10 +299,10 @@ class GithubBoardInteractorTest extends TestCase
                           'received_events_url' => 'https://api.github.com/users/drupalmk/received_events',
                           'type' => 'User',
                           'site_admin' => false,
-                        ],
-                    ],
+                        ),
+                    ),
                   'milestone' =>
-                    [
+                    array (
                       'url' => 'https://api.github.com/repos/drupalmk/sample-repository/milestones/1',
                       'html_url' => 'https://github.com/drupalmk/sample-repository/milestone/1',
                       'labels_url' => 'https://api.github.com/repos/drupalmk/sample-repository/milestones/1/labels',
@@ -312,7 +312,7 @@ class GithubBoardInteractorTest extends TestCase
                       'title' => 'Sample milestone #1',
                       'description' => '',
                       'creator' =>
-                        [
+                        array (
                           'login' => 'drupalmk',
                           'id' => 596909,
                           'node_id' => 'MDQ6VXNlcjU5NjkwOQ==',
@@ -331,24 +331,24 @@ class GithubBoardInteractorTest extends TestCase
                           'received_events_url' => 'https://api.github.com/users/drupalmk/received_events',
                           'type' => 'User',
                           'site_admin' => false,
-                        ],
+                        ),
                       'open_issues' => 3,
                       'closed_issues' => 1,
                       'state' => 'open',
                       'created_at' => '2018-09-14T22:02:39Z',
                       'updated_at' => '2018-09-17T13:45:33Z',
                       'due_on' => '2018-09-24T07:00:00Z',
-                      'closed_at' => null,
-                    ],
+                      'closed_at' => NULL,
+                    ),
                   'comments' => 0,
                   'created_at' => '2018-09-15T15:12:57Z',
                   'updated_at' => '2018-09-15T15:13:02Z',
                   'closed_at' => '2018-09-15T15:13:02Z',
                   'author_association' => 'OWNER',
                   'body' => 'Sample issue which is closed',
-                ],
+                ),
               2 =>
-                [
+                array (
                   'url' => 'https://api.github.com/repos/drupalmk/sample-repository/issues/2',
                   'repository_url' => 'https://api.github.com/repos/drupalmk/sample-repository',
                   'labels_url' => 'https://api.github.com/repos/drupalmk/sample-repository/issues/2/labels{/name}',
@@ -360,7 +360,7 @@ class GithubBoardInteractorTest extends TestCase
                   'number' => 2,
                   'title' => 'Sample issue #2',
                   'user' =>
-                    [
+                    array (
                       'login' => 'drupalmk',
                       'id' => 596909,
                       'node_id' => 'MDQ6VXNlcjU5NjkwOQ==',
@@ -379,14 +379,32 @@ class GithubBoardInteractorTest extends TestCase
                       'received_events_url' => 'https://api.github.com/users/drupalmk/received_events',
                       'type' => 'User',
                       'site_admin' => false,
-                    ],
+                    ),
                   'labels' =>
-                    [
-                    ],
+                    array (
+                      0 =>
+                        array (
+                          'id' => 1066434954,
+                          'node_id' => 'MDU6TGFiZWwxMDY2NDM0OTU0',
+                          'url' => 'https://api.github.com/repos/drupalmk/sample-repository/labels/foo',
+                          'name' => 'foo',
+                          'color' => '9aebf9',
+                          'default' => false,
+                        ),
+                      1 =>
+                        array (
+                          'id' => 1066434881,
+                          'node_id' => 'MDU6TGFiZWwxMDY2NDM0ODgx',
+                          'url' => 'https://api.github.com/repos/drupalmk/sample-repository/labels/waiting-for-feedback',
+                          'name' => 'waiting-for-feedback',
+                          'color' => 'c419a2',
+                          'default' => false,
+                        ),
+                    ),
                   'state' => 'open',
                   'locked' => false,
                   'assignee' =>
-                    [
+                    array (
                       'login' => 'drupalmk',
                       'id' => 596909,
                       'node_id' => 'MDQ6VXNlcjU5NjkwOQ==',
@@ -405,11 +423,11 @@ class GithubBoardInteractorTest extends TestCase
                       'received_events_url' => 'https://api.github.com/users/drupalmk/received_events',
                       'type' => 'User',
                       'site_admin' => false,
-                    ],
+                    ),
                   'assignees' =>
-                    [
+                    array (
                       0 =>
-                        [
+                        array (
                           'login' => 'drupalmk',
                           'id' => 596909,
                           'node_id' => 'MDQ6VXNlcjU5NjkwOQ==',
@@ -428,10 +446,10 @@ class GithubBoardInteractorTest extends TestCase
                           'received_events_url' => 'https://api.github.com/users/drupalmk/received_events',
                           'type' => 'User',
                           'site_admin' => false,
-                        ],
-                    ],
+                        ),
+                    ),
                   'milestone' =>
-                    [
+                    array (
                       'url' => 'https://api.github.com/repos/drupalmk/sample-repository/milestones/1',
                       'html_url' => 'https://github.com/drupalmk/sample-repository/milestone/1',
                       'labels_url' => 'https://api.github.com/repos/drupalmk/sample-repository/milestones/1/labels',
@@ -441,7 +459,7 @@ class GithubBoardInteractorTest extends TestCase
                       'title' => 'Sample milestone #1',
                       'description' => '',
                       'creator' =>
-                        [
+                        array (
                           'login' => 'drupalmk',
                           'id' => 596909,
                           'node_id' => 'MDQ6VXNlcjU5NjkwOQ==',
@@ -460,24 +478,24 @@ class GithubBoardInteractorTest extends TestCase
                           'received_events_url' => 'https://api.github.com/users/drupalmk/received_events',
                           'type' => 'User',
                           'site_admin' => false,
-                        ],
+                        ),
                       'open_issues' => 3,
                       'closed_issues' => 1,
                       'state' => 'open',
                       'created_at' => '2018-09-14T22:02:39Z',
                       'updated_at' => '2018-09-17T13:45:33Z',
                       'due_on' => '2018-09-24T07:00:00Z',
-                      'closed_at' => null,
-                    ],
+                      'closed_at' => NULL,
+                    ),
                   'comments' => 0,
                   'created_at' => '2018-09-14T22:03:52Z',
-                  'updated_at' => '2018-09-14T22:03:52Z',
-                  'closed_at' => null,
+                  'updated_at' => '2018-09-23T11:00:03Z',
+                  'closed_at' => NULL,
                   'author_association' => 'OWNER',
                   'body' => 'Sample issue #2 with user assigned',
-                ],
+                ),
               3 =>
-                [
+                array (
                   'url' => 'https://api.github.com/repos/drupalmk/sample-repository/issues/1',
                   'repository_url' => 'https://api.github.com/repos/drupalmk/sample-repository',
                   'labels_url' => 'https://api.github.com/repos/drupalmk/sample-repository/issues/1/labels{/name}',
@@ -489,7 +507,7 @@ class GithubBoardInteractorTest extends TestCase
                   'number' => 1,
                   'title' => 'Sample issue #1',
                   'user' =>
-                    [
+                    array (
                       'login' => 'drupalmk',
                       'id' => 596909,
                       'node_id' => 'MDQ6VXNlcjU5NjkwOQ==',
@@ -508,18 +526,18 @@ class GithubBoardInteractorTest extends TestCase
                       'received_events_url' => 'https://api.github.com/users/drupalmk/received_events',
                       'type' => 'User',
                       'site_admin' => false,
-                    ],
+                    ),
                   'labels' =>
-                    [
-                    ],
+                    array (
+                    ),
                   'state' => 'open',
                   'locked' => false,
-                  'assignee' => null,
+                  'assignee' => NULL,
                   'assignees' =>
-                    [
-                    ],
+                    array (
+                    ),
                   'milestone' =>
-                    [
+                    array (
                       'url' => 'https://api.github.com/repos/drupalmk/sample-repository/milestones/1',
                       'html_url' => 'https://github.com/drupalmk/sample-repository/milestone/1',
                       'labels_url' => 'https://api.github.com/repos/drupalmk/sample-repository/milestones/1/labels',
@@ -529,7 +547,7 @@ class GithubBoardInteractorTest extends TestCase
                       'title' => 'Sample milestone #1',
                       'description' => '',
                       'creator' =>
-                        [
+                        array (
                           'login' => 'drupalmk',
                           'id' => 596909,
                           'node_id' => 'MDQ6VXNlcjU5NjkwOQ==',
@@ -548,24 +566,24 @@ class GithubBoardInteractorTest extends TestCase
                           'received_events_url' => 'https://api.github.com/users/drupalmk/received_events',
                           'type' => 'User',
                           'site_admin' => false,
-                        ],
+                        ),
                       'open_issues' => 3,
                       'closed_issues' => 1,
                       'state' => 'open',
                       'created_at' => '2018-09-14T22:02:39Z',
                       'updated_at' => '2018-09-17T13:45:33Z',
                       'due_on' => '2018-09-24T07:00:00Z',
-                      'closed_at' => null,
-                    ],
+                      'closed_at' => NULL,
+                    ),
                   'comments' => 0,
                   'created_at' => '2018-09-14T22:03:13Z',
                   'updated_at' => '2018-09-14T22:03:13Z',
-                  'closed_at' => null,
+                  'closed_at' => NULL,
                   'author_association' => 'OWNER',
                   'body' => 'Sample issue #1 in milestone #1',
-                ],
-            ],
-        ];
+                ),
+            ),
+        );
     }
 
 

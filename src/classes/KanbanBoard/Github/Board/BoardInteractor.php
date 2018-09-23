@@ -10,6 +10,7 @@ namespace KanbanBoard\Github\Board;
 
 use KanbanBoard\Board\BoardInteractorInterface;
 use KanbanBoard\Client\ClientInterface;
+use KanbanBoard\Config\ConfigInterface;
 use KanbanBoard\Entity\IssueInterface;
 use KanbanBoard\Entity\IssueState;
 use KanbanBoard\Entity\MilestoneInterface;
@@ -31,11 +32,18 @@ class BoardInteractor implements BoardInteractorInterface
     private $client;
 
     /**
-     * @param \KanbanBoard\Client\ClientInterface $client
+     * @var \KanbanBoard\Config\ConfigInterface
      */
-    public function __construct(ClientInterface $client)
+    private $config;
+
+    /**
+     * @param \KanbanBoard\Client\ClientInterface $client
+     * @param \KanbanBoard\Config\ConfigInterface $config
+     */
+    public function __construct(ClientInterface $client, ConfigInterface $config)
     {
         $this->client = $client;
+        $this->config = $config;
     }
 
     /**
