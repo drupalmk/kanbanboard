@@ -14,10 +14,10 @@ use PHPUnit\Framework\TestCase;
 
 class IssueStateTest extends TestCase
 {
-    public function testIssueState() {
+    public function testIssueState()
+    {
         $state = IssueState::queued();
         $this->assertEquals('queued', $state);
-
 
         $state = IssueState::active();
         $this->assertEquals('active', $state);
@@ -25,5 +25,5 @@ class IssueStateTest extends TestCase
         $state = IssueState::completed();
         $this->assertEquals('completed', $state);
     }
-    
+
 }
