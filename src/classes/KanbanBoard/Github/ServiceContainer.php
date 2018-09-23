@@ -8,6 +8,7 @@
 
 namespace KanbanBoard\Github;
 
+use KanbanBoard\Github\Board\BoardInteractor;
 use KanbanBoard\Github\Config\Config;
 use KanbanBoard\GithubClient;
 use Symfony\Component\DependencyInjection\Container;
@@ -18,6 +19,10 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
  *
  * This class has been auto-generated
  * by the Symfony Dependency Injection Component.
+ *
+ * In reality this container should be created in extendable way.
+ * Services related to Github should be created directly in Github module.
+ * This is done for simplicity.
  */
 class ServiceContainer extends Container
 {
@@ -28,8 +33,9 @@ class ServiceContainer extends Container
     {
         parent::__construct(new ParameterBag($this->getDefaultParameters()));
         $this->methodMap = array(
-          'github_settings' => 'getGithubSettingsService',
+          'github_config' => 'getGithubConfig',
           'github_client' => 'getGithubClient',
+          'github_board' => 'getGithubBoard',
         );
     }
 
@@ -41,16 +47,24 @@ class ServiceContainer extends Container
      *
      * @return \KanbanBoard\Github\Config\Config A KanbanBoard\Github\Config\Config instance.
      */
-    protected function getGithubSettingsService()
+    protected function getGithubConfig()
     {
-        return $this->services['github_settings'] = new Config($this->getParameter('config.directory'));
+        return $this->services['github_config'] = new Config($this->getParameter('config.directory'));
     }
 
     /**
      * @return \KanbanBoard\GithubClient
      */
     protected function getGithubClient() {
-        return $this->services['github_client'] = new GithubClient($this->getGithubSettingsService());
+        return $this->services['github_client'] = new GithubClient($this->getGithubConfig());
+    }
+
+    /**
+     * @return \KanbanBoard\Github\Board\BoardInteractor
+     */
+    protected function getGithubBoard() {
+        return $this->services['github_board']
+          = new BoardInteractor($this->getGithubClient(), $this->getGithubConfig());
     }
 
     /**
