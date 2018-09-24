@@ -45,6 +45,7 @@ class Milestone implements MilestoneInterface
     public function __construct($id)
     {
         $this->id = (int) $id;
+        $this->issues = [];
     }
 
     /**
