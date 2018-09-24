@@ -16,7 +16,7 @@ class Authentication
     private $session;
 
     /**
-     * @TODO Refactor
+     * @TODO Refactor - looks I've no time left to do so.
      *
      * @param \KanbanBoard\Config\OAuthInterface $config
      *
