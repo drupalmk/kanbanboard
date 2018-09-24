@@ -1,21 +1,16 @@
 <?php
 
 use KanbanBoard\Github\ServiceContainer;
-use KanbanBoard\GithubClient;
-use KanbanBoard\Application;
+use KanbanBoard\View\Board as BoardView;
 
 require '../../vendor/autoload.php';
 
 
 $container = new ServiceContainer();
 $container->compile();
+/** @var \KanbanBoard\Github\Board\BoardInteractor $board */
+$board = $container->get('github_board');
 
-$settings = $container->get('github_settings');
-/** @var \KanbanBoard\GithubClient $github */
-$github = $container->get('github_client');
-$board = new Application($github, $settings->getRepositoryList(), $settings->getPausedTags());
-$data = $board->board();
-$m = new Mustache_Engine(
-    ['loader' => new Mustache_Loader_FilesystemLoader('../views')]
-);
-echo $m->render('index', ['milestones' => $data]);
+$milestones = $board->getMilestones();
+$view = new BoardView($milestones);
+echo $view->render();

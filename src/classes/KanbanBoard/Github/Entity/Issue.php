@@ -131,4 +131,9 @@ class Issue implements IssueInterface
     {
         return $this->getTitle();
     }
+
+    public function __get($name)
+    {
+        return $this->$name;
+    }
 }

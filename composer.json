@@ -5,7 +5,6 @@
 		"classmap": ["src/classes"]
 	},
 	"require": {
-		"mustache/mustache": "^2.9",
 		"vierbergenlars/php-semver": "^3.0",
 		"michelf/php-markdown": "^1.6",
 		"endouble/symfony3-custom-coding-standard": "^2.0@dev",
@@ -17,7 +16,9 @@
 		"symfony/event-dispatcher": "^4.1@dev",
 		"knplabs/github-api": "^2.11@dev",
 		"php-http/guzzle6-adapter": "^1.2@dev",
-		"cache/filesystem-adapter": "^1.1@dev"
+		"cache/filesystem-adapter": "^1.1@dev",
+		"twig/twig": "^2.0",
+		"nubs/random-name-generator": "dev-master"
 	},
 	"minimum-stability": "dev",
 	"require-dev": {

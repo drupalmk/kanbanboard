@@ -132,9 +132,9 @@ class IssueState
 
     const Queued = 1;
 
-    const Active = 2;
+    const Paused = 2;
 
-    const Paused = 3;
+    const Active = 3;
 
     const Completed = 4;
 

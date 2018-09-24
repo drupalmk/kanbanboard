@@ -9,8 +9,8 @@
 namespace KanbanBoard\Github;
 
 use KanbanBoard\Github\Board\BoardInteractor;
+use KanbanBoard\Github\Client\Github;
 use KanbanBoard\Github\Config\Config;
-use KanbanBoard\GithubClient;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
@@ -53,10 +53,10 @@ class ServiceContainer extends Container
     }
 
     /**
-     * @return \KanbanBoard\GithubClient
+     * @return \KanbanBoard\Github\Client\Github
      */
     protected function getGithubClient() {
-        return $this->services['github_client'] = new GithubClient($this->getGithubConfig());
+        return $this->services['github_client'] = new Github($this->getGithubConfig());
     }
 
     /**
