@@ -19,4 +19,9 @@ interface OAuthInterface
      * @return string
      */
     public function getClientSecret() : string;
+
+    /**
+     * @return string
+     */
+    public function getRedirectUrl() : string;
 }

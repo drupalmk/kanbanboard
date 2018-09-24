@@ -31,6 +31,8 @@ class Config implements ConfigInterface
 
     const GH_CACHE_LOCATION = 'GH_CACHE_LOCATION';
 
+    const GH_REDIRECT_URL = 'GH_REDIRECT_URL';
+
     const GH_MULTIPLE_VALUES_SEPARATOR = '|';
 
     public function __construct($configFileDirectory)
@@ -91,5 +93,13 @@ class Config implements ConfigInterface
     public function getCacheLocation(): string
     {
         return getenv(self::GH_CACHE_LOCATION);
+    }
+
+    /**
+     * @return string
+     */
+    public function getRedirectUrl(): string
+    {
+        return getenv(self::GH_REDIRECT_URL);
     }
 }
