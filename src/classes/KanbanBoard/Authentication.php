@@ -29,9 +29,7 @@ class Authentication
         $this->session = $session;
         $request = Request::createFromGlobals();
 
-        $token = $session->get('gh_token');
-
-        if ($token) {
+        if ($session->get('gh_token')) {
             return;
         }
 

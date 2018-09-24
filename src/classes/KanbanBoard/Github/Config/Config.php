@@ -35,6 +35,11 @@ class Config implements ConfigInterface
 
     const GH_MULTIPLE_VALUES_SEPARATOR = '|';
 
+    /**
+     * @var string
+     */
+    private $token;
+
     public function __construct($configFileDirectory)
     {
         $dotenv = new Dotenv($configFileDirectory);

@@ -46,18 +46,26 @@ class Github implements ClientInterface
      * Initialize Github API.
      *
      * @param \KanbanBoard\Config\ConfigInterface $config
+     * @param mixed $token
      */
-    public function __construct(ConfigInterface $config)
+    public function __construct(ConfigInterface $config, $token = null)
     {
         $this->config = $config;
         //@TODO Consider Client also injectable.
         $this->githubClient = new Client();
 
-        $this->githubClient->authenticate(
-            $config->getClientId(),
-            $config->getClientSecret(),
-            Client::AUTH_URL_CLIENT_ID
-        );
+        if ($token) {
+            $this->githubClient->authenticate(
+                $token,
+                Client::AUTH_HTTP_TOKEN
+            );
+        } else {
+            $this->githubClient->authenticate(
+                $config->getClientId(),
+                $config->getClientSecret(),
+                Client::AUTH_URL_CLIENT_ID
+            );
+        }
 
         //@TODO Consider directory path configurable also.
         $filesystemAdapter = new Local($config->getCacheLocation());

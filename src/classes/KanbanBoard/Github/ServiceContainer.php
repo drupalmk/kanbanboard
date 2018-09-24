@@ -13,6 +13,7 @@ use KanbanBoard\Github\Client\Github;
 use KanbanBoard\Github\Config\Config;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * ProjectServiceContainer.
