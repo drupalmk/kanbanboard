@@ -17,7 +17,7 @@
 		"knplabs/github-api": "^2.11@dev",
 		"php-http/guzzle6-adapter": "^1.2@dev",
 		"cache/filesystem-adapter": "^1.1@dev",
-		"twig/twig": "^2.0",
+		"twig/twig": "^3.11",
 		"nubs/random-name-generator": "dev-master",
 		"league/oauth2-github": "^1.0@dev",
 		"symfony/http-foundation": "^4.2@dev"
